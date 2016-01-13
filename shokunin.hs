@@ -42,13 +42,13 @@
 --   * elegance of the solution
 
 main = do
-  let cs = ['A'..'E']
-  let spaces = map (flip replicate ' ') (reverse [0..length cs])
-  let topLeft = zipWith3 (\x y z -> x ++ y : "" ++ z) spaces cs (reverse spaces)
+  let letters = ['A'..'E']
+  let spaces = map (flip replicate ' ') [0..length letters]
+  let topLeft = zipWith3 (\x y z -> x ++ [y] ++ z) (reverse spaces) letters spaces
   let left = topLeft ++ (tail $ reverse topLeft)
   let diamond = map (\x -> x ++ tail (reverse x)) left
-  let stretchedDiamond = (init (concat (zipWith (\x y -> [x, y]) diamond (repeat ""))))
-  print $ cs
+  let stretchedDiamond = init (concatMap (\(x, y) -> [x, y]) (zip diamond (repeat "")))
+  print $ letters
   print $ spaces
   mapM_ print topLeft
   mapM_ print left
