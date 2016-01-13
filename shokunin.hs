@@ -47,7 +47,7 @@ main = do
   let topLeft = zipWith3 (\x y z -> x ++ [y] ++ z) (reverse spaces) letters spaces
   let left = topLeft ++ (tail $ reverse topLeft)
   let diamond = [x ++ tail (reverse x) | x <- left]
-  let stretchedDiamond = init $ concat [[x, y] | (x, y) <- zip diamond (repeat "")]
+  let stretchedDiamond = init $ concat $ zipWith (\x y -> [x, y]) diamond (repeat "")
   print $ letters
   print $ spaces
   mapM_ print topLeft
