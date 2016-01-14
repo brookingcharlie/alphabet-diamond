@@ -46,9 +46,13 @@ import Data.List
 
 main = do
   widestLetter <- getChar
-  let letters = ['A'..toUpper widestLetter]
-  let spaces = [replicate n ' ' | n <- [0..length letters]]
-  let topLeft = zipWith3 (\x y z -> x ++ [y] ++ z) (reverse spaces) letters spaces
-  let left = topLeft ++ (tail $ reverse topLeft)
-  let diamond = intersperse "" [x ++ tail (reverse x) | x <- left]
-  mapM_ putStrLn diamond
+  if elem widestLetter (['a'..'z'] ++ ['A'..'Z'])
+    then
+      let letters = ['A'..toUpper widestLetter]
+          spaces = [replicate n ' ' | n <- [0..length letters]]
+          topLeft = zipWith3 (\x y z -> x ++ [y] ++ z) (reverse spaces) letters spaces
+          left = topLeft ++ (tail $ reverse topLeft)
+          diamond = intersperse "" [x ++ tail (reverse x) | x <- left]
+      in mapM_ putStrLn diamond
+    else
+      putStrLn "INVALID INPUT"
