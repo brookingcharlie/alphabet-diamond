@@ -41,11 +41,12 @@
 --   * human readability
 --   * elegance of the solution
 
+import Data.List
+
 main = do
   let letters = ['A'..'E']
   let spaces = [replicate n ' ' | n <- [0..length letters]]
   let topLeft = zipWith3 (\x y z -> x ++ [y] ++ z) (reverse spaces) letters spaces
   let left = topLeft ++ (tail $ reverse topLeft)
-  let diamond = [x ++ tail (reverse x) | x <- left]
-  let stretchedDiamond = init $ concat $ zipWith (\x y -> [x, y]) diamond (repeat "")
-  mapM_ putStrLn stretchedDiamond
+  let diamond = intersperse "" [x ++ tail (reverse x) | x <- left]
+  mapM_ putStrLn diamond
