@@ -6,12 +6,12 @@ topLeft maxLetter =
   where letters = ['A'..toUpper maxLetter]
         spaces = [replicate n ' ' | n <- [0..length letters]]
 
-mirrorDown top = top ++ (tail $ reverse top)
+mirrorDown top = top ++ tail (reverse top)
 mirrorRight left = [x ++ tail (reverse x) | x <- left]
 diamond maxLetter = mirrorRight $ mirrorDown $ topLeft maxLetter
 
 main = do
   maxLetter <- getChar
   if elem maxLetter (['a'..'z'] ++ ['A'..'Z'])
-    then mapM_ putStrLn $ intersperse "" (diamond maxLetter)
+    then mapM_ putStrLn (intersperse "" (diamond maxLetter))
     else putStrLn "INVALID INPUT"
