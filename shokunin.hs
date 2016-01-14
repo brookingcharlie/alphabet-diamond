@@ -41,10 +41,12 @@
 --   * human readability
 --   * elegance of the solution
 
+import Data.Char
 import Data.List
 
 main = do
-  let letters = ['A'..'E']
+  widestLetter <- getChar
+  let letters = ['A'..toUpper widestLetter]
   let spaces = [replicate n ' ' | n <- [0..length letters]]
   let topLeft = zipWith3 (\x y z -> x ++ [y] ++ z) (reverse spaces) letters spaces
   let left = topLeft ++ (tail $ reverse topLeft)
