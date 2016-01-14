@@ -48,10 +48,4 @@ main = do
   let left = topLeft ++ (tail $ reverse topLeft)
   let diamond = [x ++ tail (reverse x) | x <- left]
   let stretchedDiamond = init $ concat $ zipWith (\x y -> [x, y]) diamond (repeat "")
-  print $ letters
-  print $ spaces
-  mapM_ print topLeft
-  mapM_ print left
-  mapM_ print diamond
-  mapM_ print stretchedDiamond
   mapM_ putStrLn stretchedDiamond
