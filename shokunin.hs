@@ -1,5 +1,6 @@
 import Data.Char
 import Data.List
+import System.Environment
 
 topLeft maxLetter = zipWith3 (\x y z -> x ++ [y] ++ z) (reverse spaces) letters spaces
   where letters = ['A'..toUpper maxLetter]
@@ -11,7 +12,8 @@ diamond maxLetter = mirrorRight $ mirrorDown $ topLeft maxLetter
         mirrorRight = map mirror
 
 main = do
-  maxLetter <- getChar
+  args <- getArgs
+  let maxLetter = (head . head) args
   if elem maxLetter (['a'..'z'] ++ ['A'..'Z'])
     then mapM_ putStrLn (intersperse "" (diamond maxLetter))
     else putStrLn "INVALID INPUT"
