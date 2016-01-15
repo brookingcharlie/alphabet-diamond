@@ -6,7 +6,7 @@ topLeft maxLetter = zipWith3 (\x y z -> x ++ [y] ++ z) (reverse spaces) letters 
   where letters = ['A'..toUpper maxLetter]
         spaces = [replicate n ' ' | n <- [0..length letters]]
 
-diamond maxLetter = mirrorRight $ mirrorDown $ topLeft maxLetter
+diamond = mirrorRight . mirrorDown . topLeft
   where mirror xs = xs ++ tail (reverse xs)
         mirrorDown = mirror
         mirrorRight = map mirror
