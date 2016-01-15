@@ -13,7 +13,7 @@ diamond = mirrorRight . mirrorDown . topLeft
 
 main = do
   args <- getArgs
-  let maxLetter = (head . head) args
-  if elem maxLetter (['a'..'z'] ++ ['A'..'Z'])
+  let maxLetter = head $ head args
+  if length args == 1 && length (head args) == 1 && elem maxLetter (['a'..'z'] ++ ['A'..'Z'])
     then putStrLn $ concat (intersperse "\n\n" (diamond maxLetter))
     else putStrLn "INVALID INPUT"

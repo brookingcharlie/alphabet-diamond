@@ -8,7 +8,8 @@ case "$1" in
     ghc -O3 shokunin.hs
     ;;
   run)
-    time ./shokunin $2
+    shift
+    time ./shokunin "$@"
     ;;
   *)
     echo "Usage"
