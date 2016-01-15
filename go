@@ -5,7 +5,7 @@ case "$1" in
     if [ ! -x "$(which ghc)" ] ; then
       brew install ghc
     fi
-    ghc -O3 shokunin.hs
+    ghc -O2 shokunin.hs
     ;;
   run)
     shift
