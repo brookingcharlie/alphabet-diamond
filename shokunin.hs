@@ -11,9 +11,12 @@ diamond = mirrorRight . mirrorDown . topLeft
         mirrorDown = mirror
         mirrorRight = map mirror
 
+errorMessage = "INVALID INPUT"
+
 main = do
   args <- getArgs
-  let maxLetter = head $ head args
-  if length args == 1 && length (head args) == 1 && elem maxLetter (['a'..'z'] ++ ['A'..'Z'])
-    then putStrLn $ concat (intersperse "\n\n" (diamond maxLetter))
-    else putStrLn "INVALID INPUT"
+  case args of
+    [[c]] -> if c `elem` (['a'..'z'] ++ ['A'..'Z'])
+                then putStrLn $ intercalate "\n\n" (diamond c)
+                else putStrLn errorMessage
+    _     ->         putStrLn errorMessage
