@@ -11,8 +11,8 @@ diamond = mirrorRight . mirrorDown . topLeft
         mirrorDown = mirror
         mirrorRight = map mirror
 
-validInput [[c]]
-  | elem c (['a'..'z'] ++ ['A'..'Z']) = Just c
+validInput [[letter]]
+  | elem letter (['a'..'z'] ++ ['A'..'Z']) = Just letter
   | otherwise = Nothing
 validInput _ = Nothing
 
