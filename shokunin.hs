@@ -19,5 +19,5 @@ validInput _ = Nothing
 main = do
   args <- getArgs
   case validInput args of
-    Just letter -> putStrLn $ concat (intersperse "\n\n" (diamond letter))
+    Just letter -> putStrLn $ intercalate "\n\n" (diamond letter)
     Nothing -> putStrLn "INVALID INPUT"
