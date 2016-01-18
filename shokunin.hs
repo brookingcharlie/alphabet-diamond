@@ -11,13 +11,11 @@ diamond = mirrorRight . mirrorDown . topLeft
         mirrorDown = mirror
         mirrorRight = map mirror
 
-validInput [[letter]]
-  | elem letter (['a'..'z'] ++ ['A'..'Z']) = Just letter
-  | otherwise = Nothing
-validInput _ = Nothing
+validInput [[letter]] = [letter | elem letter (['a'..'z'] ++ ['A'..'Z'])]
+validInput _ = []
 
 main = do
   args <- getArgs
   case validInput args of
-    Just letter -> putStrLn $ intercalate "\n\n" (diamond letter)
-    Nothing -> putStrLn "INVALID INPUT"
+    [letter] -> putStrLn $ intercalate "\n\n" (diamond letter)
+    [] -> putStrLn "INVALID INPUT"
