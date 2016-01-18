@@ -4,7 +4,7 @@ import System.Environment
 
 topLeft maxLetter = zipWith3 (\x y z -> x ++ [y] ++ z) (reverse spaces) letters spaces
   where letters = ['A'..toUpper maxLetter]
-        spaces = [replicate n ' ' | n <- [0..length letters]]
+        spaces = [replicate n ' ' | n <- [0..length letters - 1]]
 
 diamond = mirrorRight . mirrorDown . topLeft
   where mirror xs = xs ++ tail (reverse xs)
