@@ -1,6 +1,7 @@
+module Shokunin where
+
 import Data.Char
 import Data.List
-import System.Environment
 
 topLeft maxLetter = zipWith3 (\x y z -> x ++ [y] ++ z) (reverse spaces) letters spaces
   where letters = ['A'..toUpper maxLetter]
@@ -14,8 +15,6 @@ diamond = mirrorRight . mirrorDown . topLeft
 validInput [[letter]] = [letter | elem letter (['a'..'z'] ++ ['A'..'Z'])]
 validInput _ = []
 
-main = do
-  args <- getArgs
-  case validInput args of
-    [letter] -> putStrLn $ intercalate "\n\n" (diamond letter)
-    [] -> putStrLn "INVALID INPUT"
+outputLines args = case validInput args of
+  [letter] -> intersperse "" (diamond letter)
+  [] -> ["INVALID INPUT"]
